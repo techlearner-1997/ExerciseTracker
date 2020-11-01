@@ -8,8 +8,8 @@ mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
-const exercisesRouter = require("./routes/ExerciseRoutes");
-const usersRouter = require("./routes/UserRoutes");
+const exercisesRouter = require("./routes/exerciseRoutes");
+const usersRouter = require("./routes/userRoutes");
 
 const app = express();
 

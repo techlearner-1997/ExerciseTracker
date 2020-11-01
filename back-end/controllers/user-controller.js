@@ -1,5 +1,5 @@
-const User = require("../models/user.model");
-const HttpError = require("../models/HttpError");
+const User = require("../models/user");
+const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
 
 const getUsers = async (req, res, next) => {
