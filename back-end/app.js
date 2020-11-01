@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
+require("dotenv").config();
 const HttpError = require("./models/http-error");
 const mongoose = require("mongoose");
 mongoose.set("useNewUrlParser", true);
@@ -8,6 +10,12 @@ mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 
 const app = express();
+
+const port = process.env.PORT || 5000;
+
+const uri = process.env.ATLAS_URI;
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -26,8 +34,11 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect(connectionUri)
-  .then(() => app.listen(5000))
+  .connect(uri)
+  .then(() => {
+    console.log("MongoDB database connection established successfully");
+    app.listen(port);
+  })
   .catch((err) => {
     console.log(err);
   });
