@@ -8,6 +8,8 @@ mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
+const exercisesRouter = require("./routes/ExerciseRoutes");
+const usersRouter = require("./routes/UserRoutes");
 
 const app = express();
 
@@ -20,6 +22,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //add routes here
+app.use("/api/exercises", exercisesRouter);
+app.use("/api/users", usersRouter);
 
 app.use((req, res, next) => {
   throw new HttpError("Could not find the route", 404);
