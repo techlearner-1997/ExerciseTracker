@@ -41,7 +41,7 @@ const updateExercise = async (req, res, next) => {
       exercise.duration = Number(req.body.duration);
       exercise.date = Date.parse(req.body.date);
 
-      await exercise
+      exercise
         .save()
         .then(() => res.json("Exercise updated!"))
         .catch((err) => res.status(400).json("Error: " + err));
