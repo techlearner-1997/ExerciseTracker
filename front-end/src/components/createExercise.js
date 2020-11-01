@@ -26,10 +26,20 @@ class CreateExercise extends Component{
             duration:this.state.duration,
             date:this.state.date
         }
-        const user=[...this.state.user,exercise]
-        // console.log(user)
+        // const user=[...this.state.user,exercise]
+
+        // axios.post('http://localhost:5000/api/exercises/add', exercise)
+        // .then(res => console.log(res.data));
+        // console.log(exercise)
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(exercise)
+        };
+        fetch('http://localhost:5000/api/exercises/add', requestOptions)
+        .then(res => console.log(res.data))
+        
         this.setState({
-            user:user,
             username:"",
             description:"",
             duration:"",
@@ -39,7 +49,7 @@ class CreateExercise extends Component{
     render(){
         console.log(this.state);
         return(
-            <div className="container">
+            <div className="container" style={{marginTop:"1%"}}>
                 <h1>Create a Exercise Log</h1>
                 <form onSubmit={this.submitHandler}>
                     <div className="form-group">
@@ -54,7 +64,7 @@ class CreateExercise extends Component{
 
                     <div className="form-group">
                         <label htmlFor="Duration">Duration</label>
-                        <input type="text" className="form-control" id="duration" value={this.state.duration} onChange={this.changeHandler}/>
+                        <input type="number" className="form-control" id="duration" value={this.state.duration} onChange={this.changeHandler}/>
                     </div>
 
                     <div className="form-group">

@@ -18,7 +18,6 @@ class CreateUser extends Component{
     submitHandler=(e)=>{
         e.preventDefault()
         const newUser={username:this.state.username}
-       
         // axios.post('http://localhost:5000/api/users/add', newUser)
         // .then(res => console.log(res.data));
         // console.log(newUser)
@@ -28,12 +27,11 @@ class CreateUser extends Component{
             body: JSON.stringify(newUser)
         };
         fetch('http://localhost:5000/api/users/add', requestOptions)
-        .then(res => console.log(res.data))
-        .then( this.setState({
-            username:""
-        }))
+        .then(res => console.log(res.data));
 
-       
+        this.setState({
+            username:""
+        })
     }
     render(){
         return(
